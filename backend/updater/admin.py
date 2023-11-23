@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Test
 
-# Register your models here.
+class TestAdmin(admin.ModelAdmin):
+    list_display = ('text', 'ip_address', 'date')
+
+admin.site.register(Test, TestAdmin)
