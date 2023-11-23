@@ -1,37 +1,17 @@
-import React, { useState, useEffect } from "react";
-import "./App.css"; // Import your CSS file
+// App.js
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AppPage from "./AppPage"; // Assuming you already have this component
+import FormPage from "./FormPage"; // Your new FormPage component
 
 function App() {
-  const [ip, setIp] = useState("");
-  const currentDate = new Date().toLocaleDateString();
-
-  useEffect(() => {
-    fetch("https://api.ipify.org?format=json")
-      .then((results) => results.json())
-      .then((data) => {
-        setIp(data.ip);
-      });
-  }, []);
-
   return (
-    <div className="App">
-      <div className="center">
-        <table className="table">
-          <tbody>
-            <tr>
-              <th>Message</th>
-              <th>Date</th>
-              <th>IP Address</th>
-            </tr>
-            <tr>
-              <td>Hello World!</td>
-              <td>{currentDate}</td>
-              <td>{ip}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<AppPage />} />
+        <Route path="/add" element={<FormPage />} />
+      </Routes>
+    </Router>
   );
 }
 
